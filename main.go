@@ -46,6 +46,7 @@ func main() {
 	// takes a function as an argument.
 	http.HandleFunc("/hello", hello)
 	http.HandleFunc("/headers", headers)
+	fmt.Println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
 	// Finally, we call the `ListenAndServe` with the port
 	// and a handler. `nil` tells it to use the default
