@@ -2,7 +2,9 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"net/http"
+	"os"
 
 	redigo "github.com/gomodule/redigo/redis"
 )
@@ -46,10 +48,16 @@ func main() {
 	// takes a function as an argument.
 	http.HandleFunc("/hello", hello)
 	http.HandleFunc("/headers", headers)
-	fmt.Println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
 
 	// Finally, we call the `ListenAndServe` with the port
 	// and a handler. `nil` tells it to use the default
 	// router we've just set up.
-	http.ListenAndServe(":5000", nil)
+	port := os.Getenv("PORT")
+
+	if port == "" {
+		log.Fatal("$PORT must be set")
+	}
+	p := fmt.Sprintf(":%v", port)
+	fmt.Println("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA Port : ", p)
+	http.ListenAndServe(p, nil)
 }
