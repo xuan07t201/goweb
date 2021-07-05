@@ -1,1 +1,1 @@
-c 
+web: bin\hello
